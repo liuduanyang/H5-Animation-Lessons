@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:2px solid #ccc">
+        你的浏览器不支持 Canvas
+    </canvas>
+    <script>
+        window.addEventListener('load',eventWindowLoaded,false);
+        function eventWindowLoaded(){
+            canvasApp();
+        }
+
+        function canvasApp(){
+            var myCanvas=document.getElementById("myCanvas");
+            var context=myCanvas.getContext('2d');
+
+            // 扩充context原型对象中的方法
+            function myFillRect(x,y,m,n){
+                context.fillRect(x,y,m,n);
+                console.log("扩充的");
+            }
+            context.__proto__.myFillRect=myFillRect;
+
+            console.log(context.__proto__);
+
+            context.fillStyle='red';
+            context.fillRect(100,100,300,300);
+            context.clearRect(150, 150, 200, 200);
+            context.fillStyle='green';
+            context.myFillRect(420,420,50,50);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:2px solid #ccc">
+        你的浏览器不支持 Canvas
+    </canvas>
+    <script>
+        // 区别beginPath与closePath 二者不是作用相反
+
+        /*
+        理解beginPath的作用
+            canvas中的绘制方法（如stroke,fill），都会以“上次beginPath”之后的所有路径为基础进行绘制，
+            不管你用moveTo把画笔移动到哪里，只要不beginPath，都是在画一条路径，fillRect与strokeRect
+            这种直接画出独立区域的函数，也不会打断当前的path。
+
+        
+        理解closePath的作用
+            closePath的意思不是结束路径，而是关闭路径，它会试图从（MoveTo点之后）当前路径的终点连一条
+            路径到起点，让整个路径闭合起来。但是，这并不意味着它之后的路径就是新路径了
+        */
+
+        window.addEventListener('load',eventWindowLoaded,false);
+        function eventWindowLoaded(){
+            canvasApp();
+        }
+
+        function canvasApp(){
+            var myCanvas=document.getElementById("myCanvas");
+            var context=myCanvas.getContext('2d');
+            
+            context.moveTo(50, 50);
+            context.lineTo(50, 100);
+            context.lineTo(100, 100);
+            context.strokeStyle='red';
+            context.stroke();
+
+            context.beginPath();
+            context.moveTo(250, 50);
+            context.lineTo(250, 100);
+            context.lineTo(300, 100);
+            context.closePath();
+            context.strokeStyle='blue'; 
+            context.stroke();
+        }
+    </script>
+</body>
+</html>
