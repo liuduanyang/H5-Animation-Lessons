@@ -22,7 +22,7 @@
 
             // 扩充context原型对象中的方法
             function myFillRect(x,y,m,n){
-                context.fillRect(x,y,m,n);
+                this.fillRect(x,y,m,n);
                 console.log("扩充的");
             }
             context.__proto__.myFillRect=myFillRect;
