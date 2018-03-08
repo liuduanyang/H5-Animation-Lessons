@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:2px solid #ccc">
+        你的浏览器不支持 Canvas
+    </canvas>
+    <script>
+        window.addEventListener('load',eventWindowLoaded,false);
+        function eventWindowLoaded(){
+            canvasApp();
+        }
+
+        function canvasApp(){
+            var myCanvas=document.getElementById("myCanvas");
+            var context=myCanvas.getContext('2d');
+            
+            context.fillStyle='yellow';
+            // context.translate(200, 200);    // 平移
+            // context.rotate(Math.PI / 180 * 45);   // 旋转
+            // context.scale(0.5, 0.5);    // 缩放
+            
+            // context.transform(0.5,0,0,1,0,0);
+            // context.setTransform(0.5,0,0,1,0,0);  // 是对默认坐标系进行变换，忽略之前的变换操作
+            
+
+            context.fillRect(0,0,300,300);  
+            // 以上操作用对象是坐标系，可结合save restore进行变换
+        }
+ 
+    </script>
+</body>
+</html>

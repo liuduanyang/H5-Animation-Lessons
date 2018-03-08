@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="1300" height="1000" style="border:2px solid #ccc">
+        你的浏览器不支持 Canvas
+    </canvas>
+
+    <script>
+        window.addEventListener('load',eventWindowLoaded,false);
+        function eventWindowLoaded(){
+            canvasApp();
+        }
+
+        function canvasApp(){
+            var myCanvas=document.getElementById("myCanvas");
+            var context=myCanvas.getContext('2d');
+            var img =new Image();
+            img.src='./tx.jpg';
+            console.log(img);
+            
+            img.onload=function(){
+                var pattern=context.createPattern(img,'repeat');
+                context.fillStyle=pattern;
+                context.fillRect(0,0,1300,1000);
+            }
+            
+            
+        }
+ 
+    </script>
+</body>
+</html>

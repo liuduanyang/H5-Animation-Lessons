@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:2px solid #ccc">
+        你的浏览器不支持 Canvas
+    </canvas>
+    <script>
+        window.addEventListener('load',eventWindowLoaded,false);
+        function eventWindowLoaded(){
+            canvasApp();
+        }
+
+        function canvasApp(){
+            var myCanvas=document.getElementById("myCanvas");
+            var context=myCanvas.getContext('2d');
+            
+            context.moveTo(20, 20);
+            context.lineTo(20, 300);
+            var grd=context.createLinearGradient(20, 20, 20, 300);
+            grd.addColorStop(0, 'red');
+            grd.addColorStop(1, 'yellow');            
+            context.strokeStyle=grd;
+            context.lineWidth=5;
+            context.stroke();
+
+            context.beginPath();
+            context.moveTo(200, 20);
+            context.lineTo(200, 400);
+            context.lineTo(400,400);
+            context.closePath();
+            var grd=context.createLinearGradient(200, 20, 400, 400);
+            grd.addColorStop(0, 'red');
+            grd.addColorStop(1, 'yellow');            
+            context.fillStyle=grd;
+            // context.lineWidth=5;
+            context.fill();
+
+            // 参考链接：https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/createLinearGradient
+        }
+ 
+    </script>
+</body>
+</html>
